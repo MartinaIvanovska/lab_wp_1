@@ -2,23 +2,26 @@ package mk.ukim.finki.wp.lab.service;
 
 import mk.ukim.finki.wp.lab.bootstrap.DataHolder;
 import mk.ukim.finki.wp.lab.model.Book;
+import mk.ukim.finki.wp.lab.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
+    private final BookRepository bookRepository;
+
+    public BookServiceImpl(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     @Override
     public List<Book> listAll() {
-        return DataHolder.books.stream().toList();
+        return bookRepository.findAll();
     }
 
     @Override
     public List<Book> searchBooks(String text, Double rating) throws NullPointerException {
-        return DataHolder.books.stream()
-                .filter(b -> b.getTitle().equals(text))
-                .filter(b -> b.getAverageRating()==rating)
-                .toList();
+        return bookRepository.searchBooks(text,rating);
     }
 }
