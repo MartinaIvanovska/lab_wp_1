@@ -6,7 +6,17 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Book {
+    private Long id;
     String title;
     String genre;
     double averageRating;
+    private Author author;
+
+    public Book(String title, String genre, double averageRating, Author author) {
+        this.title = title;
+        this.genre = genre;
+        this.averageRating = averageRating;
+        this.author = author;
+        this.id = (long) (Math.random() * 1000);
+    }
 }

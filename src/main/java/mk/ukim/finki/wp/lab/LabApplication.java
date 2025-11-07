@@ -12,24 +12,24 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 
-@ServletComponentScan
 @SpringBootApplication
+@ServletComponentScan
 public class LabApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(LabApplication.class, args);
     }
 
-    @Bean
-    public ServletRegistrationBean<BookListServlet> bookListServlet(BookService bookService,
-                                                                    SpringTemplateEngine springTemplateEngine) {
-        BookListServlet servlet = new BookListServlet(bookService, springTemplateEngine);
-        return new ServletRegistrationBean<>(servlet, "/");
-    }
-    @Bean
-    public ServletRegistrationBean<BookReservationServlet> bookReservationServlet(BookReservationService bookReservationService,
-                                                                                  SpringTemplateEngine springTemplateEngine) {
-        BookReservationServlet servlet = new BookReservationServlet(bookReservationService, springTemplateEngine);
-        return new ServletRegistrationBean<>(servlet, "/bookReservation");
-    }
+//    @Bean
+//    public ServletRegistrationBean<BookListServlet> bookListServlet(BookService bookService,
+//                                                                    SpringTemplateEngine springTemplateEngine) {
+//        BookListServlet servlet = new BookListServlet(bookService, springTemplateEngine);
+//        return new ServletRegistrationBean<>(servlet, "/");
+//    }
+//    @Bean
+//    public ServletRegistrationBean<BookReservationServlet> bookReservationServlet(BookReservationService bookReservationService,
+//                                                                                  SpringTemplateEngine springTemplateEngine) {
+//        BookReservationServlet servlet = new BookReservationServlet(bookReservationService, springTemplateEngine);
+//        return new ServletRegistrationBean<>(servlet, "/bookReservation");
+//    }
 }

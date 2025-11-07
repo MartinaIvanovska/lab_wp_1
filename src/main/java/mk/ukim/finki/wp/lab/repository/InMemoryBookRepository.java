@@ -1,6 +1,7 @@
 package mk.ukim.finki.wp.lab.repository;
 
 import mk.ukim.finki.wp.lab.bootstrap.DataHolder;
+import mk.ukim.finki.wp.lab.model.Author;
 import mk.ukim.finki.wp.lab.model.Book;
 import org.springframework.stereotype.Repository;
 
@@ -19,5 +20,12 @@ public class InMemoryBookRepository implements BookRepository {
                 .filter(b -> b.getTitle().equals(text))
                 .filter(b -> b.getAverageRating() >= rating)
                 .toList();
+    }
+
+    @Override
+    public Book save(String title, String genre, double averageRating, Author author) {
+        Book b=new Book(title, genre, averageRating, author);
+        DataHolder.books.add(b);
+        return b;
     }
 }
