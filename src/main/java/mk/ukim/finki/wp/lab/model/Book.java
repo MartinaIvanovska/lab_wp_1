@@ -3,9 +3,12 @@ package mk.ukim.finki.wp.lab.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+
+
 @Data
 @AllArgsConstructor
 public class Book {
+    private static long counter = 0;
     private Long id;
     String title;
     String genre;
@@ -17,6 +20,6 @@ public class Book {
         this.genre = genre;
         this.averageRating = averageRating;
         this.author = author;
-        this.id = (long) (Math.random() * 1000);
+        this.id = counter++;
     }
 }

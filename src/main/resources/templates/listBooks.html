@@ -57,8 +57,22 @@
                 Rating: <span th:text="${book.averageRating}"></span>
                 Author: <span th:text="${book.getAuthor().getName()}"></span><span th:text="${book.getAuthor().getSurname()}"></span>
             </label>
-            <button>Edit</button>
-            <button>Delete</button>
+            <th:block>
+                <a th:href="@{'/books/edit/{id}' (id=${book.getId()})}"
+                   class="btn btn-sm btn-info edit-product">
+                    <i class="fa fa-trash">Edit</i>
+                </a>
+            </th:block>
+            <th:block>
+                <a th:href="@{'/books/delete/{id}' (id=${book.getId()})}"
+                   class="btn btn-sm btn-info edit-product">
+                    <i class="fa fa-trash">Delete</i>
+                </a>
+            </th:block>
+
+            <!--            <form th:action="/books/delete" method="get">-->
+<!--                <button type="submit">delete</button>-->
+<!--            </form>-->
         </div>
 
         <h2>Enter your information:</h2>

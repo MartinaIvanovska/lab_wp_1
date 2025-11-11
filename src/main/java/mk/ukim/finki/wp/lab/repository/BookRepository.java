@@ -8,5 +8,8 @@ import java.util.List;
 public interface BookRepository {
     List<Book> findAll();
     List<Book> searchBooks(String text, Double rating);
-    Book save(String title, String genre, double averageRating, Author author);
+    Book save(Long id,String title, String genre, double averageRating, Author author);
+    Book getById(Long id);
+    Book delete(Book book);
+
 }
