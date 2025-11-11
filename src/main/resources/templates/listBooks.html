@@ -55,7 +55,24 @@
                 Title: <span th:text="${book.title}"></span>,
                 Genre: <span th:text="${book.genre}"></span>,
                 Rating: <span th:text="${book.averageRating}"></span>
+                Author: <span th:text="${book.getAuthor().getName()}"></span><span th:text="${book.getAuthor().getSurname()}"></span>
             </label>
+            <th:block>
+                <a th:href="@{'/books/edit/{id}' (id=${book.getId()})}"
+                   class="btn btn-sm btn-info edit-product">
+                    <i class="fa fa-trash">Edit</i>
+                </a>
+            </th:block>
+            <th:block>
+                <a th:href="@{'/books/delete/{id}' (id=${book.getId()})}"
+                   class="btn btn-sm btn-info edit-product">
+                    <i class="fa fa-trash">Delete</i>
+                </a>
+            </th:block>
+
+            <!--            <form th:action="/books/delete" method="get">-->
+<!--                <button type="submit">delete</button>-->
+<!--            </form>-->
         </div>
 
         <h2>Enter your information:</h2>
@@ -69,6 +86,20 @@
         <br/>
         <input type="submit" value="Reserve Book">
     </form>
+
+<!--    <div class="col mb-3">-->
+<!--        <div class="row">-->
+<!--            <div class="col-sm-12 col-md-12">-->
+<!--                <a th:href="@{/books/add-form}" class="btn btn-block btn-dark add-product-btn">-->
+<!--                    Add Book-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <form action="/books/add-form" method="get">
+        <button type="submit">Add Book</button>
+    </form>
+
 </main>
 </body>
 </html>
