@@ -17,7 +17,7 @@ public class InMemoryBookRepository implements BookRepository {
     @Override
     public List<Book> searchBooks(String text, Double rating) {
         return DataHolder.books.stream()
-                .filter(b -> b.getTitle().equals(text))
+                .filter(b -> b.getTitle().contains(text))
                 .filter(b -> b.getAverageRating() >= rating)
                 .toList();
     }
