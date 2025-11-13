@@ -80,6 +80,23 @@ public class BookController {
         return "redirect:../../books";
     }
 
+    @PostMapping("/search")
+    public String searchBooks(@RequestParam(required = false) String text,
+                              @RequestParam(required = false) Double rating,
+                              Model model) {
+        List<Book> books;
+
+        try {
+            books = bookService.searchBooks(text, rating);
+        } catch (Exception e) {
+            books = bookService.listAll(); // fallback to all books if error
+            model.addAttribute("error", "Search failed: " + e.getMessage());
+        }
+
+        model.addAttribute("books", books);
+        return "listBooks";
+    }
+
 
 
 

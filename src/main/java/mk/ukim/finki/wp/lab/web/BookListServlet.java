@@ -71,4 +71,9 @@ public class BookListServlet extends HttpServlet {
         context.setVariable("books", books);
         springTemplateEngine.process("listBooks.html", context, resp.getWriter());
     }
+
+
+
+
+
 }

@@ -32,7 +32,7 @@
 </header>
 <main>
 
-    <form action="/" method="POST">
+    <form action="/books/search" method="POST">
         <h2>Search Books</h2>
         <label>Search by title or keyword:</label>
         <input type="text" name="text" placeholder="Enter keyword" />
@@ -40,15 +40,13 @@
         <input type="number" name="rating" min="0" max="10" step="0.1" placeholder="e.g. 7.5" />
         <input type="submit" value="Search">
     </form>
+
     <hr/>
 
 
     <form action="/bookReservation" method="POST">
         <h2>Choose a book:</h2>
-        <!-- Display radio buttons for each book,
-             the value should be the book title
-             and the displayed text should be:
-             Title: <book_title>, Genre: <book_genre>, Rating: <average_rating> -->
+
         <div th:each="book : ${books}" class="book-option">
             <label>
                 <input type="radio" name="bookTitle" th:value="${book.title}" required>
@@ -58,21 +56,17 @@
                 Author: <span th:text="${book.getAuthor().getName()}"></span><span th:text="${book.getAuthor().getSurname()}"></span>
             </label>
             <th:block>
-                <a th:href="@{'/books/edit/{id}' (id=${book.getId()})}"
-                   class="btn btn-sm btn-info edit-product">
-                    <i class="fa fa-trash">Edit</i>
+                <a th:href="@{'/books/edit/{id}' (id=${book.getId()})}">
+                    <button type="button">Edit</button>
                 </a>
             </th:block>
             <th:block>
-                <a th:href="@{'/books/delete/{id}' (id=${book.getId()})}"
-                   class="btn btn-sm btn-info edit-product">
-                    <i class="fa fa-trash">Delete</i>
+                <a th:href="@{'/books/delete/{id}' (id=${book.getId()})}">
+                    <button type="button">Delete</button>
                 </a>
             </th:block>
 
-            <!--            <form th:action="/books/delete" method="get">-->
-<!--                <button type="submit">delete</button>-->
-<!--            </form>-->
+
         </div>
 
         <h2>Enter your information:</h2>
@@ -87,15 +81,7 @@
         <input type="submit" value="Reserve Book">
     </form>
 
-<!--    <div class="col mb-3">-->
-<!--        <div class="row">-->
-<!--            <div class="col-sm-12 col-md-12">-->
-<!--                <a th:href="@{/books/add-form}" class="btn btn-block btn-dark add-product-btn">-->
-<!--                    Add Book-->
-<!--                </a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+
     <form action="/books/add-form" method="get">
         <button type="submit">Add Book</button>
     </form>
