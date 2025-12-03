@@ -1,7 +1,7 @@
 package mk.ukim.finki.wp.lab.service;
 
 import mk.ukim.finki.wp.lab.model.Author;
-import mk.ukim.finki.wp.lab.repository.AuthorRepository;
+import mk.ukim.finki.wp.lab.repository.jpa.AuthorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +21,6 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author findById(Long id) {
-        return authorRepository.findById(id);
+        return authorRepository.findById(id).orElseThrow();
     }
 }

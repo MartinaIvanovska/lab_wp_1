@@ -1,10 +1,10 @@
-package mk.ukim.finki.wp.lab.repository;
+package mk.ukim.finki.wp.lab.repository.mock;
 
 import mk.ukim.finki.wp.lab.model.Author;
 
 import java.util.List;
 
-public interface AuthorRepository {
+public interface AuthorRepositoryMock {
     public List<Author> findAll();
     public Author findById(Long id);
 }
