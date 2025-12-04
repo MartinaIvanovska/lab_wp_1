@@ -1,5 +1,6 @@
 package mk.ukim.finki.wp.lab.service;
 
+import jakarta.transaction.Transactional;
 import mk.ukim.finki.wp.lab.model.Author;
 import mk.ukim.finki.wp.lab.model.Book;
 import mk.ukim.finki.wp.lab.repository.jpa.AuthorRepository;
@@ -37,6 +38,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public Book save(Long id, String title, String genre, double averageRating, Author author) {
         Book book = new Book(title, genre, averageRating, author);
         return bookRepository.save(book);
@@ -48,6 +50,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public Book update(Long bookId,String title, String genre, double averageRating, Author author) {
         Book book = bookRepository.getById(bookId);
         if(title != null || !title.isEmpty()
@@ -65,6 +68,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public Book deleteById(Long id) {
         Book book= bookRepository.getById(id);
         bookRepository.delete(book);
