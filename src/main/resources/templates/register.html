@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="register-container">
+    <h2>Register</h2>
+    <form th:action="@{/register}" method="post">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Username" required autofocus />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Password" required />
+
+        <label for="repeatedPassword">Repeat Password</label>
+        <input type="password" id="repeatedPassword" name="repeatPassword" placeholder="Repeat Password" required />
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Name" required />
+
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" name="surname" placeholder="Surname" required />
+
+        <div th:if="${error != null}" th:text="${error}" class="error-message"></div>
+
+        <button type="submit">Sign up</button>
+    </form>
+
+<!--    <div class="footer">-->
+<!--        Already have an account? <a th:href="@{/login}">Login here!</a>-->
+<!--    </div>-->
+</div>
+
+</body>
+</html>

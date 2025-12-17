@@ -27,6 +27,7 @@
     </style>
 </head>
 <body>
+<div xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <header>
     <h1>Welcome to our Book Reservation App</h1>
 </header>
@@ -43,6 +44,15 @@
 
     <hr/>
 
+    <th:block>
+        <a sec:authorize="isAnonymous()" th:href="@{'/login'}">
+            <button type="button">Log In</button>
+        </a>
+    </th:block>
+
+    <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" style="display:inline;">
+        <button type="submit">Logout</button>
+    </form>
 
     <form action="/bookReservation" method="POST">
         <h2>Choose a book:</h2>
@@ -56,12 +66,12 @@
                 Author: <span th:text="${book.getAuthor().getName()}"></span><span th:text="${book.getAuthor().getSurname()}"></span>
             </label>
             <th:block>
-                <a th:href="@{'/books/edit/{id}' (id=${book.getId()})}">
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{'/books/edit/{id}' (id=${book.getId()})}">
                     <button type="button">Edit</button>
                 </a>
             </th:block>
             <th:block>
-                <a th:href="@{'/books/delete/{id}' (id=${book.getId()})}">
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{'/books/delete/{id}' (id=${book.getId()})}">
                     <button type="button">Delete</button>
                 </a>
             </th:block>
@@ -82,10 +92,10 @@
     </form>
 
 
-    <form action="/books/add-form" method="get">
+    <form sec:authorize="hasRole('ADMIN')" action="/books/add-form" method="get">
         <button type="submit">Add Book</button>
     </form>
 
-</main>
+</main></div>
 </body>
 </html>
